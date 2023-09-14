@@ -7,6 +7,7 @@ export const Navigation = () => {
 		return (
 			<li key={href} className="flex items-center justify-center">
 				<ActiveLink
+					exact={false}
 					className="px-4 py-2 text-gray-800 transition duration-300 ease-in-out hover:opacity-50"
 					activeClassName="!text-blue-600"
 					href={href}

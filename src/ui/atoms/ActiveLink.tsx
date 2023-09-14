@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 interface ActiveLinkProps {
 	href: Route;
 	children: ReactNode;
+	exact?: boolean;
 	activeClassName: string;
 	className: string;
 }
@@ -17,9 +18,15 @@ export const ActiveLink: FunctionComponent<ActiveLinkProps> = ({
 	children,
 	activeClassName,
 	className,
+	exact = true,
 }) => {
 	const pathname = usePathname();
-	const isActive = href === pathname;
+
+	const isActive = exact
+		? pathname === href
+		: pathname.startsWith(href) &&
+		  (pathname[href.length] === "/" || pathname.length === href.length);
+
 	return (
 		<Link
 			href={href}
