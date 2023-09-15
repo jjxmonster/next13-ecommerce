@@ -15,7 +15,7 @@ export const ProductCardDescription: FunctionComponent<
 	return (
 		<div className="mt-2">
 			<div className="flex flex-col justify-between gap-5">
-				<h3 className="text-2xl font-bold text-slate-700">{name}</h3>
+				<h1 className="text-2xl font-bold text-slate-700">{name}</h1>
 				<p className="small-caps text-xl font-medium text-slate-900">
 					{formatCurrency(price)}
 				</p>
