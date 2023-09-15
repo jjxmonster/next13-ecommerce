@@ -19,7 +19,11 @@ export const Pagination = async () => {
 		</li>
 	));
 	return (
-		<nav className="border-gr h-auto w-full border-b-2">
+		<nav
+			aria-label="Pagination Navigation"
+			role="navigation"
+			className="border-gr h-auto w-full border-b-2"
+		>
 			<ul className="flex w-full items-center justify-center">
 				{renderPaginationItem}
 			</ul>
