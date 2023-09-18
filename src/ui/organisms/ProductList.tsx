@@ -1,9 +1,9 @@
 import React, { type FunctionComponent } from "react";
-import { type ProductItem } from "@/types";
 import { ProductListItem } from "@/ui/molecules/ProductListItem";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 interface ProductListProps {
-	products: ProductItem[];
+	products: ProductListItemFragment[];
 }
 
 export const ProductList: FunctionComponent<ProductListProps> = ({

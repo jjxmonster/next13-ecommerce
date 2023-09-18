@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { getProductById } from "@/app/api/product";
+import { getProductById } from "@/api/product";
 import { ProductCard } from "@/ui/molecules/ProductCard";
 
 export const generateMetadata = async ({

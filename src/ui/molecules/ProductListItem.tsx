@@ -2,10 +2,10 @@ import React, { type FunctionComponent } from "react";
 import Link from "next/link";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
-import { type ProductItem } from "@/types";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 interface ProductListItemProps {
-	product: ProductItem;
+	product: ProductListItemFragment;
 }
 
 export const ProductListItem: FunctionComponent<ProductListItemProps> = ({
@@ -15,7 +15,7 @@ export const ProductListItem: FunctionComponent<ProductListItemProps> = ({
 		<li>
 			<Link href={`/product/${product.id}`}>
 				<article>
-					<ProductCoverImage {...product.coverImage} />
+					<ProductCoverImage src={product.image} alt="" />
 					<ProductListItemDescription product={product} />
 				</article>
 			</Link>

@@ -1,17 +1,14 @@
 import React, { type FunctionComponent } from "react";
 import { formatCurrency } from "@/utils";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 interface ProductListItemDescriptionProps {
-	product: {
-		name: string;
-		category: string;
-		price: number;
-	};
+	product: ProductListItemFragment;
 }
 
 export const ProductListItemDescription: FunctionComponent<
 	ProductListItemDescriptionProps
-> = ({ product: { name, category, price } }) => {
+> = ({ product: { name, categories, price } }) => {
 	return (
 		<div className="mt-2">
 			<div className="flex flex-row justify-between">
@@ -21,7 +18,9 @@ export const ProductListItemDescription: FunctionComponent<
 				</p>
 			</div>
 			<div>
-				<p className="text-sm text-gray-500">{category}</p>
+				{categories[0] && (
+					<p className="text-sm text-gray-500">{categories[0].name}</p>
+				)}
 			</div>
 		</div>
 	);

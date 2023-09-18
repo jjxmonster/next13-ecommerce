@@ -1,7 +1,7 @@
 import * as React from "react";
 import { type Route } from "next";
 import { ActiveLink } from "../atoms/ActiveLink";
-import { getProducts } from "@/app/api/product";
+import { getProducts } from "@/api/product";
 
 export const Pagination = async () => {
 	const products = await getProducts();

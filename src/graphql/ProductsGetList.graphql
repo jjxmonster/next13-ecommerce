@@ -1,0 +1,5 @@
+query ProductsGetList($offset: Int) {
+	products(offset: $offset) {
+		...ProductListItem
+	}
+}

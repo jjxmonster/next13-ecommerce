@@ -1,4 +1,4 @@
-import { getProducts } from "../../api/product";
+import { getProducts } from "../../../api/product";
 import { ProductList } from "@/ui/organisms/ProductList";
 
 export const generateStaticParams = async () => {

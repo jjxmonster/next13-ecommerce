@@ -9,15 +9,15 @@ interface ActiveLinkProps {
 	href: Route;
 	children: ReactNode;
 	exact?: boolean;
-	activeClassName: string;
-	className: string;
+	activeClassName?: string;
+	className?: string;
 }
 
 export const ActiveLink: FunctionComponent<ActiveLinkProps> = ({
 	href,
 	children,
-	activeClassName,
-	className,
+	activeClassName = "!text-blue-600 border-b-2 border-blue-600",
+	className = "flex h-full items-center justify-center px-4 py-2 text-gray-800 transition duration-300 ease-in-out hover:opacity-50",
 	exact = true,
 }) => {
 	const pathname = usePathname();

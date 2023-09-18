@@ -1,12 +1,9 @@
 import React, { type FunctionComponent } from "react";
 import { formatCurrency } from "@/utils";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 interface ProductCardDescriptionProps {
-	product: {
-		name: string;
-		description: string;
-		price: number;
-	};
+	product: ProductListItemFragment;
 }
 
 export const ProductCardDescription: FunctionComponent<
