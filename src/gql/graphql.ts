@@ -123,7 +123,7 @@ export type ProductInput = {
 };
 
 export type Query = {
-  categories?: Maybe<Array<Maybe<Category>>>;
+  categories: Array<Category>;
   category_products?: Maybe<Category>;
   collection?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
@@ -171,10 +171,23 @@ export type Status =
   | 'PROCESSING'
   | 'SHIPPED';
 
+export type CategoryGetAllQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoryGetAllQuery = { categories: Array<{ slug: string, name: string }> };
+
+export type ProductGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> } | null };
+
 export type ProductListItemFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
+  productsOffset?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
@@ -213,9 +226,33 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CategoryGetAllDocument = new TypedDocumentString(`
+    query CategoryGetAll {
+  categories {
+    slug
+    name
+  }
+}
+    `) as unknown as TypedDocumentString<CategoryGetAllQuery, CategoryGetAllQueryVariables>;
+export const ProductGetByIdDocument = new TypedDocumentString(`
+    query ProductGetById($id: ID!) {
+  product(id: $id) {
+    ...ProductListItem
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  image
+  price
+  categories {
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
-    query ProductsGetByCategorySlug($slug: String!) {
-  category_products(slug: $slug) {
+    query ProductsGetByCategorySlug($slug: String!, $productsOffset: Int) {
+  category_products(slug: $slug, productsOffset: $productsOffset) {
     products {
       ...ProductListItem
     }

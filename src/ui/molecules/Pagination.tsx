@@ -1,10 +1,17 @@
 import * as React from "react";
 import { type Route } from "next";
 import { ActiveLink } from "../atoms/ActiveLink";
-import { getProducts } from "@/api/product";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
-export const Pagination = async () => {
-	const products = await getProducts();
+interface PaginationProps {
+	products: ProductListItemFragment[];
+	path: string;
+}
+
+export const Pagination: React.FunctionComponent<PaginationProps> = async ({
+	products,
+	path,
+}) => {
 	const pages = Math.ceil(products.length / 4);
 
 	const renderPaginationItem = Array.from(Array(pages).keys()).map((page) => (
@@ -12,7 +19,7 @@ export const Pagination = async () => {
 			<ActiveLink
 				className="inline-flex items-center border-b-2 px-4 pt-4 text-sm font-medium"
 				activeClassName="border-blue-600 text-blue-600"
-				href={`/products/${page + 1}` as Route}
+				href={`${path}/${page + 1}` as Route}
 			>
 				{page + 1}
 			</ActiveLink>

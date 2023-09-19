@@ -11,6 +11,7 @@
 		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
+		"@graphql-typed-document-node/core": "^3.2.0",
 		"@next/env": "^13.4.19",
 		"@types/node": "20.5.9",
 		"@types/react": "18.2.21",

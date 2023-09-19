@@ -16,4 +16,12 @@ export const navigationitems: { name: string; href: Route }[] = [
 		name: "All",
 		href: "/products",
 	},
+	{
+		name: "Hoodies",
+		href: "/categories/hoodies" as Route,
+	},
+	{
+		name: "T-Shirts",
+		href: "/categories/t-shirts" as Route,
+	},
 ];

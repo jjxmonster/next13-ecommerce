@@ -1,14 +1,16 @@
+import { getProducts } from "@/api/product";
 import { Pagination } from "@/ui/molecules/Pagination";
 
-export default function ProductsLayout({
+export default async function ProductsLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const products = await getProducts();
 	return (
 		<>
-			<div className="h-[80wh]">{children}</div>
-			<Pagination />
+			<div>{children}</div>
+			<Pagination products={products} path="/products" />
 		</>
 	);
 }

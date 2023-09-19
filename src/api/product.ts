@@ -1,42 +1,10 @@
+import { exectueQuery } from "./lib";
 import {
 	type ProductListItemFragment,
 	ProductsGetListDocument,
-	type TypedDocumentString,
+	ProductGetByIdDocument,
+	ProductsGetByCategorySlugDocument,
 } from "@/gql/graphql";
-
-export const exectueQuery = async <TResult, TVariables>(
-	query: TypedDocumentString<TResult, TVariables>,
-	variables: TVariables,
-): Promise<TResult> => {
-	if (!process.env.GRAPHQL_URL) {
-		throw TypeError("GRAPHQL_URL is not defined");
-	}
-
-	const res = await fetch(process.env.GRAPHQL_URL, {
-		method: "POST",
-		body: JSON.stringify({
-			query,
-			variables,
-		}),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-
-	type GraphQLResponse<T> =
-		| { data?: undefined; errors: { message: string }[] }
-		| { data: T; errors?: undefined };
-
-	const graphqlResponse = (await res.json()) as GraphQLResponse<TResult>;
-
-	if (graphqlResponse.errors) {
-		throw new Error("GraphQL Error", {
-			cause: graphqlResponse.errors[0].message,
-		});
-	}
-
-	return graphqlResponse.data;
-};
 
 export const getProducts = async (offset?: number) => {
 	const graphqlResponse = await exectueQuery(ProductsGetListDocument, {
@@ -46,4 +14,31 @@ export const getProducts = async (offset?: number) => {
 	return graphqlResponse.products;
 };
 
-export const getProductById = async (_id: ProductListItemFragment["id"]) => {};
+export const getProductsByCategorySlug = async (
+	slug: string,
+	productsOffset?: number,
+) => {
+	let graphqlResponse;
+
+	if (productsOffset) {
+		graphqlResponse = await exectueQuery(ProductsGetByCategorySlugDocument, {
+			slug,
+			productsOffset,
+		});
+	} else {
+		graphqlResponse = await exectueQuery(ProductsGetByCategorySlugDocument, {
+			slug,
+		});
+	}
+
+	return graphqlResponse.category_products
+		?.products as ProductListItemFragment[];
+};
+
+export const getProductById = async (id: ProductListItemFragment["id"]) => {
+	const graphqlResponse = await exectueQuery(ProductGetByIdDocument, {
+		id,
+	});
+
+	return graphqlResponse.product;
+};
