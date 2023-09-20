@@ -145,6 +145,7 @@ export type Query = {
   order_item?: Maybe<OrderItem>;
   product?: Maybe<Product>;
   products: Array<Product>;
+  products_by_keyword: Array<Product>;
   products_similar: Array<Product>;
 };
 
@@ -177,6 +178,11 @@ export type QueryProductArgs = {
 
 export type QueryProductsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryProducts_By_KeywordArgs = {
+  keyword: Scalars['String']['input'];
 };
 
 
@@ -215,6 +221,13 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 
 
 export type ProductsGetByCategorySlugQuery = { category_products?: { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> } | null };
+
+export type ProductsGetByKeywordQueryVariables = Exact<{
+  keyword: Scalars['String']['input'];
+}>;
+
+
+export type ProductsGetByKeywordQuery = { products_by_keyword: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> };
 
 export type ProductsGetListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -331,6 +344,23 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
     slug
   }
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+export const ProductsGetByKeywordDocument = new TypedDocumentString(`
+    query ProductsGetByKeyword($keyword: String!) {
+  products_by_keyword(keyword: $keyword) {
+    ...ProductListItem
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  image
+  price
+  categories {
+    name
+    slug
+  }
+}`) as unknown as TypedDocumentString<ProductsGetByKeywordQuery, ProductsGetByKeywordQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($offset: Int) {
   products(offset: $offset) {

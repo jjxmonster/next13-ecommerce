@@ -3,7 +3,7 @@ import { ProductCoverImage } from "../atoms/ProductCoverImage";
 import { ProductCardDescription } from "../atoms/ProductCardDescription";
 import { ProductVariants } from "../molecules/ProductVariants";
 import { LoadingIndicator } from "../atoms/LoadingIndicator";
-import { SimilarProducts } from "./SimilarProducts";
+import { SimilarProducts } from "../molecules/SimilarProducts";
 import { type ProductPageFragment } from "@/gql/graphql";
 
 interface ProductViewProps {
@@ -32,7 +32,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 					/>
 				</div>
 			</article>
-			<aside>
+			<aside data-testid="related-products">
 				<div className="py-16">
 					<Suspense fallback={<LoadingIndicator />}>
 						<SimilarProducts

@@ -1,0 +1,5 @@
+query ProductsGetByKeyword($keyword: String!) {
+	products_by_keyword(keyword: $keyword) {
+		...ProductListItem
+	}
+}

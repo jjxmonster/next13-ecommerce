@@ -23,11 +23,6 @@ export default function RootLayout({
 				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">
 					{children}
 				</section>
-				{/* <footer>
-					<p className="text-center text-sm text-gray-500">
-						Next13 e-commerce © {new Date().getFullYear()}{" "}
-					</p>
-				</footer> */}
 				<Footer />
 			</body>
 		</html>

@@ -1,5 +1,5 @@
 import { type FunctionComponent } from "react";
-import { ProductList } from "./ProductList";
+import { ProductList } from "../organisms/ProductList";
 import { getSimilarProducts } from "@/api/product";
 
 interface SimilarProductsProps {

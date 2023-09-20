@@ -19,6 +19,7 @@ const documents = {
     "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n}": types.ProductListItemFragmentDoc,
     "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}": types.ProductPageFragmentDoc,
     "query ProductsGetByCategorySlug($slug: String!, $productsOffset: Int) {\n  category_products(slug: $slug, productsOffset: $productsOffset) {\n    products {\n      ...ProductListItem\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
+    "query ProductsGetByKeyword($keyword: String!) {\n  products_by_keyword(keyword: $keyword) {\n    ...ProductListItem\n  }\n}": types.ProductsGetByKeywordDocument,
     "query ProductsGetList($offset: Int) {\n  products(offset: $offset) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSimilarDocument,
 };
@@ -43,6 +44,10 @@ export function graphql(source: "fragment ProductPage on Product {\n  id\n  name
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetByCategorySlug($slug: String!, $productsOffset: Int) {\n  category_products(slug: $slug, productsOffset: $productsOffset) {\n    products {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductsGetByCategorySlugDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductsGetByKeyword($keyword: String!) {\n  products_by_keyword(keyword: $keyword) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetByKeywordDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
