@@ -4,6 +4,7 @@ import {
 	ProductsGetListDocument,
 	ProductGetByIdDocument,
 	ProductsGetByCategorySlugDocument,
+	type ProductPageFragment,
 } from "@/gql/graphql";
 
 export const getProducts = async (offset?: number) => {
@@ -35,7 +36,7 @@ export const getProductsByCategorySlug = async (
 		?.products as ProductListItemFragment[];
 };
 
-export const getProductById = async (id: ProductListItemFragment["id"]) => {
+export const getProductById = async (id: ProductPageFragment["id"]) => {
 	const graphqlResponse = await exectueQuery(ProductGetByIdDocument, {
 		id,
 	});

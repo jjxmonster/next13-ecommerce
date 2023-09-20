@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductById } from "@/api/product";
-import { ProductCard } from "@/ui/molecules/ProductCard";
+import { ProductView } from "@/ui/organisms/ProductView";
 
 export const generateMetadata = async ({
 	params,
@@ -31,8 +31,10 @@ export const generateMetadata = async ({
 
 export default async function ProductPage({
 	params,
+	searchParams,
 }: {
 	params: { productId: string };
+	searchParams: { [key: string]: string | string[] };
 }) {
 	const product = await getProductById(params.productId);
 
@@ -40,5 +42,5 @@ export default async function ProductPage({
 		notFound();
 	}
 
-	return <ProductCard product={product} />;
+	return <ProductView product={product} searchParams={searchParams} />;
 }

@@ -112,6 +112,14 @@ export type Product = {
   image: Scalars['String']['output'];
   name: Scalars['String']['output'];
   price: Scalars['Int']['output'];
+  product_color_variants: Array<Maybe<ProductColorVariant>>;
+  product_size_variants: Array<Maybe<ProductSizeVariant>>;
+  slug: Scalars['String']['output'];
+};
+
+export type ProductColorVariant = {
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
   slug: Scalars['String']['output'];
 };
 
@@ -122,6 +130,12 @@ export type ProductInput = {
   slug: Scalars['String']['input'];
 };
 
+export type ProductSizeVariant = {
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+};
+
 export type Query = {
   categories: Array<Category>;
   category_products?: Maybe<Category>;
@@ -130,6 +144,8 @@ export type Query = {
   order?: Maybe<Order>;
   order_item?: Maybe<OrderItem>;
   product?: Maybe<Product>;
+  product_color_variants: Array<Maybe<ProductColorVariant>>;
+  product_size_variants: Array<Maybe<ProductSizeVariant>>;
   products: Array<Product>;
 };
 
@@ -160,6 +176,16 @@ export type QueryProductArgs = {
 };
 
 
+export type QueryProduct_Color_VariantsArgs = {
+  product_id: Scalars['ID']['input'];
+};
+
+
+export type QueryProduct_Size_VariantsArgs = {
+  product_id: Scalars['ID']['input'];
+};
+
+
 export type QueryProductsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -181,9 +207,11 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> } | null };
+export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> } | null };
 
 export type ProductListItemFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> };
+
+export type ProductPageFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -226,6 +254,26 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const ProductPageFragmentDoc = new TypedDocumentString(`
+    fragment ProductPage on Product {
+  id
+  name
+  description
+  image
+  price
+  categories {
+    name
+  }
+  product_color_variants {
+    name
+    slug
+  }
+  product_size_variants {
+    name
+    slug
+  }
+}
+    `, {"fragmentName":"ProductPage"}) as unknown as TypedDocumentString<ProductPageFragment, unknown>;
 export const CategoryGetAllDocument = new TypedDocumentString(`
     query CategoryGetAll {
   categories {
@@ -237,10 +285,10 @@ export const CategoryGetAllDocument = new TypedDocumentString(`
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {
-    ...ProductListItem
+    ...ProductPage
   }
 }
-    fragment ProductListItem on Product {
+    fragment ProductPage on Product {
   id
   name
   description
@@ -248,6 +296,14 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
   price
   categories {
     name
+  }
+  product_color_variants {
+    name
+    slug
+  }
+  product_size_variants {
+    name
+    slug
   }
 }`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`

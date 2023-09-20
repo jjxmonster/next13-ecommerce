@@ -1,0 +1,18 @@
+fragment ProductPage on Product {
+	id
+	name
+	description
+	image
+	price
+	categories {
+		name
+	}
+	product_color_variants {
+		name
+		slug
+	}
+	product_size_variants {
+		name
+		slug
+	}
+}
