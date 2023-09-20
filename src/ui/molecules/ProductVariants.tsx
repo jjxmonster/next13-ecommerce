@@ -5,11 +5,7 @@ import { ProductVariantLink } from "../atoms/ProductVariantLink";
 
 interface ProductVariantsProps {
 	variants: {
-		color: ({
-			name: string;
-			slug: string;
-		} | null)[];
-		size: ({
+		[key: string]: ({
 			name: string;
 			slug: string;
 		} | null)[];
@@ -22,13 +18,12 @@ export const ProductVariants: FunctionComponent<ProductVariantsProps> = ({
 	searchParams,
 }) => {
 	const router = useRouter();
+	const selectedColor =
+		(searchParams.color as string) ?? variants.color[0]?.slug;
+	const selectedSize = (searchParams.size as string) ?? variants.size[0]?.slug;
 
 	useEffect(() => {
-		router.replace(
-			`?color=${
-				(searchParams.color as string) ?? variants.color[0]?.slug
-			}&size=${(searchParams.size as string) ?? variants.size[0]?.slug}`,
-		);
+		router.replace(`?color=${selectedColor}&size=${selectedSize}`);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (

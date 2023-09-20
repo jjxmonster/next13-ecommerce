@@ -1,7 +1,9 @@
-import React, { type FunctionComponent } from "react";
+import React, { Suspense, type FunctionComponent } from "react";
 import { ProductCoverImage } from "../atoms/ProductCoverImage";
 import { ProductCardDescription } from "../atoms/ProductCardDescription";
 import { ProductVariants } from "../molecules/ProductVariants";
+import { LoadingIndicator } from "../atoms/LoadingIndicator";
+import { SimilarProducts } from "./SimilarProducts";
 import { type ProductPageFragment } from "@/gql/graphql";
 
 interface ProductViewProps {
@@ -19,15 +21,27 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 	};
 
 	return (
-		<article className="flex gap-10">
-			<ProductCoverImage src={product.image} alt="" />
-			<div className="flex flex-col items-start gap-10">
-				<ProductCardDescription product={product} />
-				<ProductVariants
-					variants={productVariants}
-					searchParams={searchParams}
-				/>
-			</div>
-		</article>
+		<>
+			<article className="flex gap-10">
+				<ProductCoverImage src={product.image} alt="" />
+				<div className="flex flex-col items-start gap-10">
+					<ProductCardDescription product={product} />
+					<ProductVariants
+						variants={productVariants}
+						searchParams={searchParams}
+					/>
+				</div>
+			</article>
+			<aside>
+				<div className="py-16">
+					<Suspense fallback={<LoadingIndicator />}>
+						<SimilarProducts
+							id={product.id}
+							category={product.categories[0].slug}
+						/>
+					</Suspense>
+				</div>
+			</aside>
+		</>
 	);
 };

@@ -144,9 +144,8 @@ export type Query = {
   order?: Maybe<Order>;
   order_item?: Maybe<OrderItem>;
   product?: Maybe<Product>;
-  product_color_variants: Array<Maybe<ProductColorVariant>>;
-  product_size_variants: Array<Maybe<ProductSizeVariant>>;
   products: Array<Product>;
+  products_similar: Array<Product>;
 };
 
 
@@ -176,18 +175,14 @@ export type QueryProductArgs = {
 };
 
 
-export type QueryProduct_Color_VariantsArgs = {
-  product_id: Scalars['ID']['input'];
-};
-
-
-export type QueryProduct_Size_VariantsArgs = {
-  product_id: Scalars['ID']['input'];
-};
-
-
 export type QueryProductsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryProducts_SimilarArgs = {
+  category: Scalars['String']['input'];
+  productId: Scalars['ID']['input'];
 };
 
 export type Status =
@@ -207,11 +202,11 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> } | null };
+export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> } | null };
 
-export type ProductListItemFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> };
+export type ProductListItemFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> };
 
-export type ProductPageFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> };
+export type ProductPageFragment = { id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }>, product_color_variants: Array<{ name: string, slug: string } | null>, product_size_variants: Array<{ name: string, slug: string } | null> };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -219,14 +214,22 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetByCategorySlugQuery = { category_products?: { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> }> } | null };
+export type ProductsGetByCategorySlugQuery = { category_products?: { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> } | null };
 
 export type ProductsGetListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string }> }> };
+export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> };
+
+export type ProductsGetSimilarQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+  category: Scalars['String']['input'];
+}>;
+
+
+export type ProductsGetSimilarQuery = { products_similar: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -251,6 +254,7 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
   categories {
     name
+    slug
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
@@ -263,6 +267,7 @@ export const ProductPageFragmentDoc = new TypedDocumentString(`
   price
   categories {
     name
+    slug
   }
   product_color_variants {
     name
@@ -296,6 +301,7 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
   price
   categories {
     name
+    slug
   }
   product_color_variants {
     name
@@ -322,6 +328,7 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
   price
   categories {
     name
+    slug
   }
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
@@ -338,5 +345,23 @@ export const ProductsGetListDocument = new TypedDocumentString(`
   price
   categories {
     name
+    slug
   }
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+export const ProductsGetSimilarDocument = new TypedDocumentString(`
+    query ProductsGetSimilar($id: ID!, $category: String!) {
+  products_similar(productId: $id, category: $category) {
+    ...ProductListItem
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  image
+  price
+  categories {
+    name
+    slug
+  }
+}`) as unknown as TypedDocumentString<ProductsGetSimilarQuery, ProductsGetSimilarQueryVariables>;

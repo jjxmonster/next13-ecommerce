@@ -16,10 +16,11 @@ import * as types from './graphql';
 const documents = {
     "query CategoryGetAll {\n  categories {\n    slug\n    name\n  }\n}": types.CategoryGetAllDocument,
     "query ProductGetById($id: ID!) {\n  product(id: $id) {\n    ...ProductPage\n  }\n}": types.ProductGetByIdDocument,
-    "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n  }\n}": types.ProductListItemFragmentDoc,
-    "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}": types.ProductPageFragmentDoc,
+    "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n}": types.ProductListItemFragmentDoc,
+    "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}": types.ProductPageFragmentDoc,
     "query ProductsGetByCategorySlug($slug: String!, $productsOffset: Int) {\n  category_products(slug: $slug, productsOffset: $productsOffset) {\n    products {\n      ...ProductListItem\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
     "query ProductsGetList($offset: Int) {\n  products(offset: $offset) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
+    "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSimilarDocument,
 };
 
 /**
@@ -33,11 +34,11 @@ export function graphql(source: "query ProductGetById($id: ID!) {\n  product(id:
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
+export function graphql(source: "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}"): typeof import('./graphql').ProductPageFragmentDoc;
+export function graphql(source: "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  categories {\n    name\n    slug\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}"): typeof import('./graphql').ProductPageFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -46,6 +47,10 @@ export function graphql(source: "query ProductsGetByCategorySlug($slug: String!,
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetList($offset: Int) {\n  products(offset: $offset) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetSimilarDocument;
 
 
 export function graphql(source: string) {

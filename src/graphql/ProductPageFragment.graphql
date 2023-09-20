@@ -6,6 +6,7 @@ fragment ProductPage on Product {
 	price
 	categories {
 		name
+		slug
 	}
 	product_color_variants {
 		name

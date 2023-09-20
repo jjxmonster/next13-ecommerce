@@ -5,6 +5,7 @@ import {
 	ProductGetByIdDocument,
 	ProductsGetByCategorySlugDocument,
 	type ProductPageFragment,
+	ProductsGetSimilarDocument,
 } from "@/gql/graphql";
 
 export const getProducts = async (offset?: number) => {
@@ -34,6 +35,18 @@ export const getProductsByCategorySlug = async (
 
 	return graphqlResponse.category_products
 		?.products as ProductListItemFragment[];
+};
+
+export const getSimilarProducts = async (
+	id: ProductListItemFragment["id"],
+	category: string,
+) => {
+	const graphqlResponse = await exectueQuery(ProductsGetSimilarDocument, {
+		id,
+		category,
+	});
+
+	return graphqlResponse.products_similar;
 };
 
 export const getProductById = async (id: ProductPageFragment["id"]) => {

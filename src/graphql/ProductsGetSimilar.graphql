@@ -1,0 +1,5 @@
+query ProductsGetSimilar($id: ID!, $category: String!) {
+	products_similar(productId: $id, category: $category) {
+		...ProductListItem
+	}
+}
