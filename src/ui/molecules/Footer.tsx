@@ -22,9 +22,9 @@ export const Footer = () => {
 					</div>
 					<div>
 						<div>
-							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 ">
+							<h3 className="mb-6 text-sm font-semibold uppercase text-gray-900 ">
 								Legal
-							</h2>
+							</h3>
 							<ul className="font-medium text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
 									<a href="#" className="hover:underline">

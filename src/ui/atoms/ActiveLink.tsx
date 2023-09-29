@@ -29,6 +29,7 @@ export const ActiveLink: FunctionComponent<ActiveLinkProps> = ({
 
 	return (
 		<Link
+			aria-current={isActive ? "page" : undefined}
 			href={href}
 			className={clsx(className, {
 				[activeClassName]: isActive,

@@ -27,6 +27,7 @@ export type Collection = {
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   products: Array<Product>;
+  slug: Scalars['String']['output'];
 };
 
 export type Mutation = {
@@ -138,8 +139,10 @@ export type ProductSizeVariant = {
 
 export type Query = {
   categories: Array<Category>;
+  category?: Maybe<Category>;
   category_products?: Maybe<Category>;
   collection?: Maybe<Collection>;
+  collection_products?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
   order?: Maybe<Order>;
   order_item?: Maybe<OrderItem>;
@@ -150,6 +153,11 @@ export type Query = {
 };
 
 
+export type QueryCategoryArgs = {
+  slug: Scalars['String']['input'];
+};
+
+
 export type QueryCategory_ProductsArgs = {
   productsOffset?: InputMaybe<Scalars['Int']['input']>;
   slug: Scalars['String']['input'];
@@ -157,7 +165,12 @@ export type QueryCategory_ProductsArgs = {
 
 
 export type QueryCollectionArgs = {
-  id: Scalars['ID']['input'];
+  slug: Scalars['String']['input'];
+};
+
+
+export type QueryCollection_ProductsArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -203,6 +216,20 @@ export type CategoryGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CategoryGetAllQuery = { categories: Array<{ slug: string, name: string }> };
 
+export type CategoryGetBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CategoryGetBySlugQuery = { category?: { name: string } | null };
+
+export type CollectionGetBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CollectionGetBySlugQuery = { collection?: { name: string } | null };
+
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -221,6 +248,13 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 
 
 export type ProductsGetByCategorySlugQuery = { category_products?: { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> } | null };
+
+export type ProductsGetByCollectionSlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductsGetByCollectionSlugQuery = { collection_products?: { products: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> } | null };
 
 export type ProductsGetByKeywordQueryVariables = Exact<{
   keyword: Scalars['String']['input'];
@@ -300,6 +334,20 @@ export const CategoryGetAllDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CategoryGetAllQuery, CategoryGetAllQueryVariables>;
+export const CategoryGetBySlugDocument = new TypedDocumentString(`
+    query CategoryGetBySlug($slug: String!) {
+  category(slug: $slug) {
+    name
+  }
+}
+    `) as unknown as TypedDocumentString<CategoryGetBySlugQuery, CategoryGetBySlugQueryVariables>;
+export const CollectionGetBySlugDocument = new TypedDocumentString(`
+    query CollectionGetBySlug($slug: String!) {
+  collection(slug: $slug) {
+    name
+  }
+}
+    `) as unknown as TypedDocumentString<CollectionGetBySlugQuery, CollectionGetBySlugQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {
@@ -344,6 +392,25 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
     slug
   }
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+export const ProductsGetByCollectionSlugDocument = new TypedDocumentString(`
+    query ProductsGetByCollectionSlug($slug: String!) {
+  collection_products(slug: $slug) {
+    products {
+      ...ProductListItem
+    }
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  image
+  price
+  categories {
+    name
+    slug
+  }
+}`) as unknown as TypedDocumentString<ProductsGetByCollectionSlugQuery, ProductsGetByCollectionSlugQueryVariables>;
 export const ProductsGetByKeywordDocument = new TypedDocumentString(`
     query ProductsGetByKeyword($keyword: String!) {
   products_by_keyword(keyword: $keyword) {

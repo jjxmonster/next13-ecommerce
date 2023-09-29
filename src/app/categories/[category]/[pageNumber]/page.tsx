@@ -1,5 +1,24 @@
+import { type Metadata } from "next";
+import { getCategory } from "@/api/category";
 import { getProductsByCategorySlug } from "@/api/product";
 import { ProductList } from "@/ui/organisms/ProductList";
+import { SectionHeader } from "@/ui/molecules/SectionHeader";
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { category: string };
+}): Promise<Metadata> => {
+	const category = await getCategory(params.category);
+
+	if (!category) {
+		return {};
+	}
+
+	return {
+		title: category.name,
+	};
+};
 
 export const generateStaticParams = async ({
 	params: { category },
@@ -24,9 +43,11 @@ export default async function CategoryProductsPage({
 		category,
 		Number(pageNumber),
 	);
+	const category_data = await getCategory(category);
 
 	return (
 		<>
+			<SectionHeader title={category_data?.name ?? ""} />
 			<ProductList products={products} />
 		</>
 	);

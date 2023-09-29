@@ -15,7 +15,7 @@ export const SearchInput = () => {
 
 	useEffect(() => {
 		timeoutId.current = setTimeout(() => {
-			router.replace(`/search?query=${searchQuery}`);
+			searchQuery.length && router.replace(`/search?query=${searchQuery}`);
 		}, 500);
 
 		return () => {

@@ -9,7 +9,9 @@ export const SectionHeader: FunctionComponent<SectionHeaderProps> = ({
 	return (
 		<div className="bg-gray-100">
 			<div className="mx-auto max-w-7xl px-8">
-				<h3 className="py-8 font-medium">{title}</h3>
+				<h2 role="heading" className="py-8 font-medium text-gray-500">
+					{title}
+				</h2>
 			</div>
 		</div>
 	);
