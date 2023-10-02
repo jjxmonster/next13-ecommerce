@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { Header } from "@/ui/organisms/Header";
 import { Footer } from "@/ui/molecules/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
 	title: "Men`s store - Next13 E-Commerce",

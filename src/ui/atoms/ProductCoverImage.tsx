@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { type FunctionComponent } from "react";
 
 interface ProductCoverImageProps {
@@ -11,7 +12,7 @@ export const ProductCoverImage: FunctionComponent<ProductCoverImageProps> = ({
 }) => {
 	return (
 		<div className="aspect-square overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
-			<img
+			<Image
 				width={320}
 				height={320}
 				alt={alt}

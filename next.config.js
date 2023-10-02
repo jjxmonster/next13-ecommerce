@@ -3,6 +3,9 @@ const nextConfig = {
 	experimental: {
 		typedRoutes: true,
 	},
+	images: {
+		domains: ["loremflickr.com", "picsum.photos"],
+	},
 	redirects: async () => {
 		return [
 			{
