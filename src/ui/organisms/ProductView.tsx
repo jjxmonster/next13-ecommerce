@@ -1,10 +1,13 @@
 import React, { Suspense, type FunctionComponent } from "react";
+import { revalidateTag } from "next/cache";
 import { ProductCoverImage } from "../atoms/ProductCoverImage";
 import { ProductCardDescription } from "../atoms/ProductCardDescription";
 import { ProductVariants } from "../molecules/ProductVariants";
 import { LoadingIndicator } from "../atoms/LoadingIndicator";
 import { SimilarProducts } from "../molecules/SimilarProducts";
+import { AddToCartButton } from "../atoms/AddToCartButton";
 import { type ProductPageFragment } from "@/gql/graphql";
+import { addProductToCart, getOrCreateCart } from "@/api/cart";
 
 interface ProductViewProps {
 	product: ProductPageFragment;
@@ -20,6 +23,14 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 		size: product.product_size_variants.filter((variant) => variant !== null),
 	};
 
+	async function addToCardAction() {
+		"use server";
+		const cart = await getOrCreateCart();
+		await addProductToCart(cart.id, product.id, 1);
+
+		revalidateTag("cart");
+	}
+
 	return (
 		<>
 			<article className="flex gap-10">
@@ -30,6 +41,9 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 						variants={productVariants}
 						searchParams={searchParams}
 					/>
+					<form action={addToCardAction}>
+						<AddToCartButton />
+					</form>
 				</div>
 			</article>
 			<aside data-testid="related-products">
