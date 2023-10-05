@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Shirt } from "lucide-react";
 import React from "react";
 
 export const Footer = () => {
@@ -8,16 +8,7 @@ export const Footer = () => {
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
 						<div className="flex items-center gap-x-2">
-							<Image
-								alt="Logo Men`s store"
-								width={35}
-								height={35}
-								src="/logo.svg"
-							/>
-
-							<span className="self-center whitespace-nowrap text-3xl font-bold">
-								Men`s store
-							</span>
+							<Shirt size={50} className="text-blue-600" />
 						</div>
 					</div>
 					<div>

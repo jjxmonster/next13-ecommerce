@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { ProductCoverImage } from "../atoms/ProductCoverImage";
 import { IncrementProductQuantity } from "../atoms/IncrementProductQuantity";
+import { RemoveButton } from "../atoms/RemoveProductButton";
 import { type CartFragment } from "@/gql/graphql";
 import { formatCurrency } from "@/utils";
 
@@ -33,6 +34,9 @@ export const ShoppingCartItem = ({
 							quantity={item.quantity}
 							itemId={item.id}
 						/>
+					</div>
+					<div>
+						<RemoveButton productId={item.id} />
 					</div>
 				</div>
 				<div>

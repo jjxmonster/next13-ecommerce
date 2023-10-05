@@ -1,7 +1,13 @@
 import { redirect } from "next/navigation";
-import { getCartFromCookies } from "@/api/cart";
+import { getCartFromCookies, handlePaymentAction } from "@/api/cart";
 import { formatCurrency } from "@/utils";
 import { ShoppingCartItem } from "@/ui/molecules/ShoppingCartItem";
+
+export const generateMetadata = () => {
+	return {
+		title: "Cart",
+	};
+};
 
 export default async function CartPage() {
 	const cart = await getCartFromCookies();
@@ -28,9 +34,14 @@ export default async function CartPage() {
 							<span>Order Total</span>
 							<span>{formatCurrency(40000)}</span>
 						</p>
-						<button className="rounded-md bg-blue-600 py-3 text-white">
-							Checkout
-						</button>
+						<form className="w-full" action={handlePaymentAction}>
+							<button
+								type="submit"
+								className="w-full rounded-md bg-blue-600 py-3 text-white"
+							>
+								Checkout
+							</button>
+						</form>
 					</div>
 				</section>
 			</div>
