@@ -7,8 +7,10 @@ import { formatCurrency } from "@/utils";
 
 export const ShoppingCartItem = ({
 	item,
+	isModalVersion = false,
 }: {
 	item: CartFragment["orderItems"][0];
+	isModalVersion?: boolean;
 }) => {
 	return (
 		<li key={item.id} className="flex gap-5 border-t py-4">
@@ -29,15 +31,19 @@ export const ShoppingCartItem = ({
 							{formatCurrency(item.product.price)}
 						</span>
 					</div>
-					<div>
-						<IncrementProductQuantity
-							quantity={item.quantity}
-							itemId={item.id}
-						/>
-					</div>
-					<div>
-						<RemoveButton productId={item.id} />
-					</div>
+					{!isModalVersion && (
+						<>
+							<div>
+								<IncrementProductQuantity
+									quantity={item.quantity}
+									itemId={item.id}
+								/>
+							</div>
+							<div>
+								<RemoveButton productId={item.id} />
+							</div>
+						</>
+					)}
 				</div>
 				<div>
 					<p className="flex gap-2 text-sm text-gray-500">

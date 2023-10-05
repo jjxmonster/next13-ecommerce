@@ -15,7 +15,7 @@ export const Navigation = () => {
 
 	return (
 		<nav className="flex-1">
-			<ul className="flex h-16 max-w-full whitespace-nowrap lg:px-8">
+			<ul className="flex h-16 max-w-full whitespace-nowrap">
 				{renderNavigationItem}
 			</ul>
 		</nav>
