@@ -3,6 +3,8 @@ fragment Cart on Order {
 	orderItems {
 		id
 		quantity
+		size
+		color
 		product {
 			image
 			id

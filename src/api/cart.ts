@@ -6,6 +6,7 @@ import {
 	CartAddProductDocument,
 	CartByGetIdDocument,
 	CartCreateDocument,
+	OrderUpdateStatusDocument,
 	type CartFragment,
 } from "@/gql/graphql";
 
@@ -54,6 +55,8 @@ export const addProductToCart = async (
 	orderId: string,
 	productId: string,
 	quantity: number,
+	size: string,
+	color: string,
 ) => {
 	return executeGraphql({
 		query: CartAddProductDocument,
@@ -61,6 +64,8 @@ export const addProductToCart = async (
 			orderId,
 			productId,
 			quantity,
+			size,
+			color,
 		},
 	});
 };
@@ -106,4 +111,14 @@ export const handlePaymentAction = async () => {
 	}
 	cookies().set("cartId", "");
 	redirect(checkoutSession.url);
+};
+
+export const updateOrderStatus = (orderId: string, status: string) => {
+	return executeGraphql({
+		query: OrderUpdateStatusDocument,
+		variables: {
+			id: orderId,
+			status,
+		},
+	});
 };

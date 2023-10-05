@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { getCartFromCookies } from "@/api/cart";
 import { Overlay } from "@/ui/atoms/Overlay";
 import { ModalCart } from "@/ui/organisms/ModalCart";
@@ -8,7 +7,7 @@ export default async function Modal() {
 	const cart = await getCartFromCookies();
 
 	if (!cart) {
-		redirect("/");
+		return null;
 	}
 
 	return (

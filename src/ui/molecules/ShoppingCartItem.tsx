@@ -25,7 +25,7 @@ export const ShoppingCartItem = ({
 					<div className="flex flex-col gap-2 text-gray-600">
 						<h3>{item.product.name}</h3>
 						<p className="flex gap-3 text-sm font-light">
-							Black <span>|</span> L
+							{item.color} <span>|</span> {item.size}
 						</p>
 						<span className="text-sm font-medium">
 							{formatCurrency(item.product.price)}

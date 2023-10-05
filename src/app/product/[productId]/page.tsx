@@ -34,7 +34,7 @@ export default async function ProductPage({
 	searchParams,
 }: {
 	params: { productId: string };
-	searchParams: { [key: string]: string | string[] };
+	searchParams: { size: string; color: string };
 }) {
 	const product = await getProductById(params.productId);
 

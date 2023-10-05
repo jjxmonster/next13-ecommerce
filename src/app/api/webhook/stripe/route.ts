@@ -2,6 +2,7 @@
 
 import { type NextRequest } from "next/server";
 import Stripe from "stripe";
+import { updateOrderStatus } from "@/api/cart";
 
 export async function POST(request: NextRequest): Promise<Response> {
 	if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -27,7 +28,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			event.data.object.metadata?.cartId;
+			await updateOrderStatus(event.data.object.id, "COMPLETED");
 		}
 	}
 

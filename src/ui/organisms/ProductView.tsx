@@ -11,7 +11,7 @@ import { addProductToCart, getOrCreateCart } from "@/api/cart";
 
 interface ProductViewProps {
 	product: ProductPageFragment;
-	searchParams: { [key: string]: string | string[] };
+	searchParams: { size: string; color: string };
 }
 
 export const ProductView: FunctionComponent<ProductViewProps> = ({
@@ -26,14 +26,20 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 	async function addToCardAction() {
 		"use server";
 		const cart = await getOrCreateCart();
-		await addProductToCart(cart.id, product.id, 1);
+		await addProductToCart(
+			cart.id,
+			product.id,
+			1,
+			searchParams.size,
+			searchParams.color,
+		);
 
 		revalidateTag("cart");
 	}
 
 	return (
 		<>
-			<article className="flex gap-10">
+			<article className="flex flex-col gap-10 xl:flex-row">
 				<ProductCoverImage src={product.image} alt="" />
 				<div className="flex flex-col items-start gap-10">
 					<ProductCardDescription product={product} />
