@@ -4,6 +4,7 @@ import { executeGraphql } from "./api/lib";
 import {
 	CartRemoveProductDocument,
 	CartSetProductQuantityDocument,
+	ReviewAddForProductDocument,
 } from "./gql/graphql";
 
 export const removeItem = (itemId: string) => {
@@ -17,5 +18,26 @@ export const changeItemQuantity = (itemId: string, quantity: number) => {
 	return executeGraphql({
 		query: CartSetProductQuantityDocument,
 		variables: { itemId, quantity },
+	});
+};
+export const addProductReview = (formData: FormData) => {
+	// console.log({
+	// 	title: formData.get("title") as string,
+	// 	content: formData.get("content") as string,
+	// 	rating: Number(formData.get("rating")),
+	// 	productId: formData.get("productId") as string,
+	// 	email: formData.get("email") as string,
+	// 	name: formData.get("name") as string,
+	// });
+	return executeGraphql({
+		query: ReviewAddForProductDocument,
+		variables: {
+			title: formData.get("title") as string,
+			content: formData.get("content") as string,
+			rating: Number(formData.get("rating")),
+			productId: formData.get("productId") as string,
+			email: formData.get("email") as string,
+			name: formData.get("name") as string,
+		},
 	});
 };

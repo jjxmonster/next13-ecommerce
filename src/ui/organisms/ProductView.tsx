@@ -6,6 +6,7 @@ import { ProductVariants } from "../molecules/ProductVariants";
 import { LoadingIndicator } from "../atoms/LoadingIndicator";
 import { SimilarProducts } from "../molecules/SimilarProducts";
 import { AddToCartButton } from "../atoms/AddToCartButton";
+import { ReviewForm } from "../molecules/ReviewForm";
 import { type ProductPageFragment } from "@/gql/graphql";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
 
@@ -62,6 +63,9 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 					</Suspense>
 				</div>
 			</aside>
+			<section>
+				<ReviewForm productId={product.id} />
+			</section>
 		</>
 	);
 };

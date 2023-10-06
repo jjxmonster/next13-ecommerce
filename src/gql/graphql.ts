@@ -65,7 +65,9 @@ export type MutationCreateProductArgs = {
 
 export type MutationCreateReviewArgs = {
   content: Scalars['String']['input'];
-  productId?: InputMaybe<Scalars['Int']['input']>;
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  productId: Scalars['String']['input'];
   rating: Scalars['Int']['input'];
   title: Scalars['String']['input'];
 };
@@ -226,7 +228,9 @@ export type QueryReviewsArgs = {
 
 export type Review = {
   content: Scalars['String']['output'];
+  email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
   product: Product;
   rating: Scalars['Int']['output'];
   title: Scalars['String']['output'];
@@ -346,6 +350,18 @@ export type ProductsGetSimilarQueryVariables = Exact<{
 
 
 export type ProductsGetSimilarQuery = { products_similar: Array<{ id: string, name: string, description: string, image: string, price: number, categories: Array<{ name: string, slug: string }> }> };
+
+export type ReviewAddForProductMutationVariables = Exact<{
+  productId: Scalars['String']['input'];
+  rating: Scalars['Int']['input'];
+  content: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+}>;
+
+
+export type ReviewAddForProductMutation = { createReview?: { id: string } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -627,3 +643,17 @@ export const ProductsGetSimilarDocument = new TypedDocumentString(`
     slug
   }
 }`) as unknown as TypedDocumentString<ProductsGetSimilarQuery, ProductsGetSimilarQueryVariables>;
+export const ReviewAddForProductDocument = new TypedDocumentString(`
+    mutation ReviewAddForProduct($productId: String!, $rating: Int!, $content: String!, $title: String!, $email: String!, $name: String!) {
+  createReview(
+    title: $title
+    productId: $productId
+    rating: $rating
+    content: $content
+    email: $email
+    name: $name
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewAddForProductMutation, ReviewAddForProductMutationVariables>;

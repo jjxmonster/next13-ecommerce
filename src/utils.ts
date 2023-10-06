@@ -25,3 +25,36 @@ export const navigationitems: { name: string; href: Route }[] = [
 		href: "/categories/t-shirts" as Route,
 	},
 ];
+
+export const reviewFormItems = [
+	{
+		label: "Review title",
+		type: "text",
+		name: "title",
+		required: true,
+	},
+	{
+		label: "Review content",
+		type: "area",
+		name: "content",
+		required: true,
+	},
+	{
+		label: "Rating",
+		type: "rating",
+		name: "rating",
+		required: true,
+	},
+	{
+		label: "Name",
+		type: "text",
+		name: "name",
+		required: true,
+	},
+	{
+		label: "Email",
+		type: "email",
+		name: "email",
+		required: true,
+	},
+];

@@ -32,6 +32,7 @@ const documents = {
     "query ProductsGetByKeyword($keyword: String!) {\n  products_by_keyword(keyword: $keyword) {\n    ...ProductListItem\n  }\n}": types.ProductsGetByKeywordDocument,
     "query ProductsGetList($offset: Int) {\n  products(offset: $offset) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSimilarDocument,
+    "mutation ReviewAddForProduct($productId: String!, $rating: Int!, $content: String!, $title: String!, $email: String!, $name: String!) {\n  createReview(\n    title: $title\n    productId: $productId\n    rating: $rating\n    content: $content\n    email: $email\n    name: $name\n  ) {\n    id\n  }\n}": types.ReviewAddForProductDocument,
 };
 
 /**
@@ -106,6 +107,10 @@ export function graphql(source: "query ProductsGetList($offset: Int) {\n  produc
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetSimilarDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ReviewAddForProduct($productId: String!, $rating: Int!, $content: String!, $title: String!, $email: String!, $name: String!) {\n  createReview(\n    title: $title\n    productId: $productId\n    rating: $rating\n    content: $content\n    email: $email\n    name: $name\n  ) {\n    id\n  }\n}"): typeof import('./graphql').ReviewAddForProductDocument;
 
 
 export function graphql(source: string) {
