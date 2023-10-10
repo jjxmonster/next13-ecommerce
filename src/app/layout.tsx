@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/ui/organisms/Header";
 import { Footer } from "@/ui/molecules/Footer";
 
@@ -19,15 +20,17 @@ export default function RootLayout({
 	modal: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={`${inter.className} flex min-h-screen flex-col`}>
-				<Header />
-				<section className="sm:py-18  mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">
-					{children}
-				</section>
-				<Footer />
-				{modal}
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className={`${inter.className} flex min-h-screen flex-col`}>
+					<Header />
+					<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col items-center px-8 py-12 sm:px-6 lg:max-w-7xl">
+						{children}
+					</section>
+					<Footer />
+					{modal}
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }
