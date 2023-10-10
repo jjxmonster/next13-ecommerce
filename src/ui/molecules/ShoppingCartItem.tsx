@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { ProductCoverImage } from "../atoms/ProductCoverImage";
-import { IncrementProductQuantity } from "../atoms/IncrementProductQuantity";
+import { ProductQuantity } from "../atoms/ProductQuantity";
 import { RemoveButton } from "../atoms/RemoveProductButton";
 import { type CartFragment } from "@/gql/graphql";
 import { formatCurrency } from "@/utils";
@@ -34,10 +34,7 @@ export const ShoppingCartItem = ({
 					{!isModalVersion && (
 						<>
 							<div>
-								<IncrementProductQuantity
-									quantity={item.quantity}
-									itemId={item.id}
-								/>
+								<ProductQuantity quantity={item.quantity} itemId={item.id} />
 							</div>
 							<div>
 								<RemoveButton productId={item.id} />

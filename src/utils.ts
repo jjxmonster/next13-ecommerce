@@ -30,7 +30,7 @@ export const reviewFormItems = [
 	{
 		label: "Review title",
 		type: "text",
-		name: "title",
+		name: "headline",
 		required: true,
 	},
 	{

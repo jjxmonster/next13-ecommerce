@@ -7,6 +7,7 @@ export default async function ProductsLayout({
 	children: React.ReactNode;
 }) {
 	const products = await getProducts();
+
 	return (
 		<>
 			<div>{children}</div>

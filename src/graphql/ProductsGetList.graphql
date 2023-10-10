@@ -1,5 +1,5 @@
-query ProductsGetList($offset: Int) {
-	products(offset: $offset) {
+query ProductsGetList($offset: Int, $field: String, $order: String) {
+	products(offset: $offset, sortByField: $field, sortOrder: $order) {
 		...ProductListItem
 	}
 }

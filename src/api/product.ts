@@ -10,11 +10,16 @@ import {
 	ProductsGetByCollectionSlugDocument,
 } from "@/gql/graphql";
 
-export const getProducts = async (offset?: number) => {
+export const getProducts = async (
+	offset?: number,
+	sort?: { field: string; order: string },
+) => {
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetListDocument,
 		variables: {
 			offset,
+			field: sort?.field,
+			order: sort?.order,
 		},
 	});
 

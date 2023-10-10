@@ -23,7 +23,7 @@ export const ActiveLink: FunctionComponent<ActiveLinkProps> = ({
 	const pathname = usePathname();
 
 	const isActive = exact
-		? pathname === href
+		? pathname === href.split("?")[0]
 		: pathname.startsWith(href) &&
 		  (pathname[href.length] === "/" || pathname.length === href.length);
 

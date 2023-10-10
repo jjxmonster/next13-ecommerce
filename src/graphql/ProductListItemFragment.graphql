@@ -4,6 +4,7 @@ fragment ProductListItem on Product {
 	description
 	image
 	price
+	weightedRating
 	categories {
 		name
 		slug

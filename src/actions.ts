@@ -21,18 +21,10 @@ export const changeItemQuantity = (itemId: string, quantity: number) => {
 	});
 };
 export const addProductReview = (formData: FormData) => {
-	// console.log({
-	// 	title: formData.get("title") as string,
-	// 	content: formData.get("content") as string,
-	// 	rating: Number(formData.get("rating")),
-	// 	productId: formData.get("productId") as string,
-	// 	email: formData.get("email") as string,
-	// 	name: formData.get("name") as string,
-	// });
 	return executeGraphql({
 		query: ReviewAddForProductDocument,
 		variables: {
-			title: formData.get("title") as string,
+			title: formData.get("headline") as string,
 			content: formData.get("content") as string,
 			rating: Number(formData.get("rating")),
 			productId: formData.get("productId") as string,
