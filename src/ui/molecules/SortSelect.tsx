@@ -9,6 +9,7 @@ export const SortSelect = () => {
 
 	useEffect(() => {
 		sort.length && router.replace(`?sort=${sort}`);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [sort]);
 	return (
 		<select

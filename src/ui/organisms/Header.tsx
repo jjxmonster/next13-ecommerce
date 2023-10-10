@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Shirt } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Navigation } from "../molecules/Navigation";
 import { ShoppingCart } from "../atoms/ShoppingCart";
 import { SearchInput } from "../atoms/SearchInput";
@@ -16,6 +17,12 @@ export const Header = async () => {
 				<div className="flex h-16 flex-1 items-center gap-4 px-2 lg:ml-6 lg:justify-end">
 					<SearchInput />
 					<ShoppingCart quantity={quantity} />
+					<SignedIn>
+						<UserButton />
+					</SignedIn>
+					<SignedOut>
+						<SignInButton />
+					</SignedOut>
 				</div>
 			</div>
 		</header>
