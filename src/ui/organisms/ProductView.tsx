@@ -1,5 +1,5 @@
 import React, { Suspense, type FunctionComponent } from "react";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { ProductCoverImage } from "../atoms/ProductCoverImage";
 import { ProductCardDescription } from "../atoms/ProductCardDescription";
 import { ProductVariants } from "../molecules/ProductVariants";
@@ -34,8 +34,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 			searchParams.size,
 			searchParams.color,
 		);
-
-		revalidatePath("cart");
+		revalidateTag("cart");
 	}
 
 	return (

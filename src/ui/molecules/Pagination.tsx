@@ -10,7 +10,7 @@ interface PaginationProps {
 	path: string;
 }
 
-export const Pagination: React.FunctionComponent<PaginationProps> = async ({
+export const Pagination: React.FunctionComponent<PaginationProps> = ({
 	products,
 	path,
 }) => {
