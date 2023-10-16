@@ -18,7 +18,7 @@ export default async function CartPage() {
 	}
 
 	return (
-		<div>
+		<div className="w-full">
 			<h1 className="text-4xl font-bold">Shopping Cart</h1>
 			<div className="mt-10 flex gap-20">
 				<section className="w-2/3">

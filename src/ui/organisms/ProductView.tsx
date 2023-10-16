@@ -40,7 +40,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 
 	return (
 		<>
-			<article className="flex flex-col gap-10 md:flex-row">
+			<article className="flex w-full flex-col gap-10 md:flex-row">
 				<ProductCoverImage src={product.image} alt="" />
 				<div className="flex flex-col items-start gap-10">
 					<ProductCardDescription product={product} />
