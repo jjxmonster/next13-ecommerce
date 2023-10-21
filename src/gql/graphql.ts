@@ -70,6 +70,7 @@ export type MutationDeleteOrderItemArgs = {
 
 
 export type MutationUpdateOrderArgs = {
+  email?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
 };
@@ -81,6 +82,7 @@ export type MutationUpdateOrderItemArgs = {
 };
 
 export type Order = {
+  email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   orderItems: Array<OrderItem>;
   status?: Maybe<Scalars['String']['output']>;
@@ -263,6 +265,7 @@ export type CollectionGetBySlugQuery = { collection?: { name: string } | null };
 export type OrderUpdateStatusMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   status: Scalars['String']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -491,8 +494,8 @@ export const CollectionGetBySlugDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CollectionGetBySlugQuery, CollectionGetBySlugQueryVariables>;
 export const OrderUpdateStatusDocument = new TypedDocumentString(`
-    mutation OrderUpdateStatus($id: ID!, $status: String!) {
-  updateOrder(id: $id, status: $status) {
+    mutation OrderUpdateStatus($id: ID!, $status: String!, $email: String) {
+  updateOrder(id: $id, status: $status, email: $email) {
     id
     status
   }

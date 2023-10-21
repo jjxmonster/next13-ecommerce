@@ -112,12 +112,17 @@ export const handlePaymentAction = async () => {
 	redirect(checkoutSession.url);
 };
 
-export const updateOrderStatus = (orderId: string, status: string) => {
+export const updateOrderStatus = (
+	orderId: string,
+	status: string,
+	email?: string,
+) => {
 	return executeGraphql({
 		query: OrderUpdateStatusDocument,
 		variables: {
 			id: orderId,
 			status,
+			email,
 		},
 	});
 };

@@ -8,7 +8,6 @@ export async function POST(request: NextRequest): Promise<Response> {
 	if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
 		throw new Error("Missing STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET");
 	}
-
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 		apiVersion: "2023-08-16",
 		typescript: true,
@@ -28,7 +27,15 @@ export async function POST(request: NextRequest): Promise<Response> {
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			await updateOrderStatus(event.data.object.id, "COMPLETED");
+			if (!event.data.object.metadata || !event.data.object.customer_details) {
+				return new Response("No metadata", { status: 401 });
+			}
+
+			await updateOrderStatus(
+				event.data.object.metadata.cartId,
+				"COMPLETED",
+				event.data.object.customer_details.email as string,
+			);
 		}
 	}
 

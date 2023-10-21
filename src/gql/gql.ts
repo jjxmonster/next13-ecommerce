@@ -23,7 +23,7 @@ const documents = {
     "query CategoryGetAll {\n  categories {\n    slug\n    name\n  }\n}": types.CategoryGetAllDocument,
     "query CategoryGetBySlug($slug: String!) {\n  category(slug: $slug) {\n    name\n  }\n}": types.CategoryGetBySlugDocument,
     "query CollectionGetBySlug($slug: String!) {\n  collection(slug: $slug) {\n    name\n  }\n}": types.CollectionGetBySlugDocument,
-    "mutation OrderUpdateStatus($id: ID!, $status: String!) {\n  updateOrder(id: $id, status: $status) {\n    id\n    status\n  }\n}": types.OrderUpdateStatusDocument,
+    "mutation OrderUpdateStatus($id: ID!, $status: String!, $email: String) {\n  updateOrder(id: $id, status: $status, email: $email) {\n    id\n    status\n  }\n}": types.OrderUpdateStatusDocument,
     "query ProductGetById($id: ID!) {\n  product(id: $id) {\n    ...ProductPage\n  }\n}": types.ProductGetByIdDocument,
     "fragment ProductListItem on Product {\n  id\n  name\n  description\n  image\n  price\n  weightedRating\n  categories {\n    name\n    slug\n  }\n}": types.ProductListItemFragmentDoc,
     "fragment ProductPage on Product {\n  id\n  name\n  description\n  image\n  price\n  weightedRating\n  categories {\n    name\n    slug\n  }\n  product_color_variants {\n    name\n    slug\n  }\n  product_size_variants {\n    name\n    slug\n  }\n}": types.ProductPageFragmentDoc,
@@ -74,7 +74,7 @@ export function graphql(source: "query CollectionGetBySlug($slug: String!) {\n  
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation OrderUpdateStatus($id: ID!, $status: String!) {\n  updateOrder(id: $id, status: $status) {\n    id\n    status\n  }\n}"): typeof import('./graphql').OrderUpdateStatusDocument;
+export function graphql(source: "mutation OrderUpdateStatus($id: ID!, $status: String!, $email: String) {\n  updateOrder(id: $id, status: $status, email: $email) {\n    id\n    status\n  }\n}"): typeof import('./graphql').OrderUpdateStatusDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
