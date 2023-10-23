@@ -5,14 +5,13 @@ export default authMiddleware({
 		"/",
 		"/search",
 		"/cart",
-		"/categories",
-		"/categories/(.*)",
-		"/collections",
-		"/collections/(.*)",
+		RegExp("/categories(.*)"),
+		RegExp("/collections"),
+		RegExp("/collections(.*)"),
 		"/products",
-		"/products/(.*)",
+		RegExp("/products(.*)"),
 	],
-	// ignoredRoutes: ["api/webhook/stripe"],
+	ignoredRoutes: ["api/webhook/stripe"],
 });
 
 export const config = {

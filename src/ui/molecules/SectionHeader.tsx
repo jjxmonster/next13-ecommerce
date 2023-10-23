@@ -9,7 +9,7 @@ export const SectionHeader: FunctionComponent<SectionHeaderProps> = ({
 	leftContent,
 }) => {
 	return (
-		<div className="bg-gray-100">
+		<div className="bg-slate-200">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-8">
 				<h2 role="heading" className="py-8 font-medium text-gray-500">
 					{title}

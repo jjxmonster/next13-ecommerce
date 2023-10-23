@@ -20,7 +20,7 @@ export const TrendingCollections = () => {
 						className="h-full w-full object-cover object-center  transition-transform hover:scale-105"
 					/>
 				</div>
-				<span className="text-xl font-medium text-gray-500">Winter 2023</span>
+				<span className="text-sm font-medium text-gray-500">Winter 2023</span>
 			</div>
 		</section>
 	);

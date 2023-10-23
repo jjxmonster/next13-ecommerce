@@ -20,7 +20,7 @@ export default async function CartPage() {
 	return (
 		<div className="w-full">
 			<h1 className="text-4xl font-bold">Shopping Cart</h1>
-			<div className="mt-10 flex flex-col gap-20">
+			<div className="mt-10 flex flex-col gap-20 md:flex-row">
 				<section className="w-full md:w-2/3">
 					<ul>
 						{cart.orderItems.map((item) => (
