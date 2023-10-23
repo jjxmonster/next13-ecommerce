@@ -5,8 +5,8 @@ import { ActiveLink } from "./ActiveLink";
 export const ShoppingCart = ({ quantity }: { quantity: number }) => {
 	return (
 		<ActiveLink href="/cart">
-			<ShoppingCartIcon color="black" size={25} />{" "}
-			<span className="ml-2 text-[17px] font-medium text-black">
+			<ShoppingCartIcon color="black" size={20} />{" "}
+			<span className="ml-1 text-[15px] font-medium text-black">
 				{quantity}
 			</span>
 		</ActiveLink>

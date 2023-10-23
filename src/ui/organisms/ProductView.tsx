@@ -63,7 +63,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 					</Suspense>
 				</div>
 			</aside>
-			<section>
+			<section className="flex w-full">
 				<ReviewForm productId={product.id} />
 			</section>
 		</>

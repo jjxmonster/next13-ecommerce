@@ -12,6 +12,7 @@ export default authMiddleware({
 		"/products",
 		"/products/(.*)",
 	],
+	// ignoredRoutes: ["api/webhook/stripe"],
 });
 
 export const config = {

@@ -27,15 +27,14 @@ export const SearchInput = () => {
 		<div className="relative">
 			<input
 				onChange={handleChange}
-				className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 px-3 py-2 pl-10 leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-blue-600 focus:outline-none focus:ring-purple-600"
+				className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 px-3 py-2 pl-6 text-sm leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-blue-600 focus:outline-none focus:ring-purple-600"
 				type="search"
 				role="searchbox"
 				placeholder="Search..."
 			/>
 			<div className="absolute inset-y-0 right-0 flex items-center"></div>
-
 			<div className="absolute inset-y-0 left-0 flex items-center px-2">
-				<SearchIcon color="gray" />
+				<SearchIcon color="gray" width={15} />
 			</div>
 		</div>
 	);

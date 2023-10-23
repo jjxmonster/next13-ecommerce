@@ -11,7 +11,7 @@ export default async function Modal() {
 	}
 
 	return (
-		<aside className="animation-fade-in fixed inset-0 z-20 backdrop-blur-md">
+		<aside className="animation-fade-in fixed inset-0 z-50 backdrop-blur-md">
 			<Overlay />
 			<div className="absolute bottom-0 right-0 top-0 z-50 flex h-full animate-slide flex-col overflow-hidden bg-white p-5 shadow-xl sm:w-1/2 lg:w-1/3">
 				<ModalCart cart={cart} />
