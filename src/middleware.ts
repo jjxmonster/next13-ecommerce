@@ -1,19 +1,17 @@
 import { authMiddleware } from "@clerk/nextjs";
 
+export const config = {
+	matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+};
+
 export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/search",
 		"/cart",
-		RegExp("/categories(.*)"),
-		RegExp("/collections"),
-		RegExp("/collections(.*)"),
+		"/categories/(.*)",
+		"/collections/(.*)",
+		"/product/(.*)",
 		"/products",
-		RegExp("/products(.*)"),
 	],
-	ignoredRoutes: ["api/webhook/stripe"],
 });
-
-export const config = {
-	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};

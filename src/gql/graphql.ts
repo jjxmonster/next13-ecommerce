@@ -131,6 +131,7 @@ export type Query = {
   collection_products?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
   order?: Maybe<Order>;
+  orders: Array<Maybe<Order>>;
   product?: Maybe<Product>;
   products: Array<Product>;
   products_by_keyword: Array<Product>;
@@ -163,6 +164,11 @@ export type QueryCollection_ProductsArgs = {
 export type QueryOrderArgs = {
   id: Scalars['ID']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryOrdersArgs = {
+  email?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -270,6 +276,13 @@ export type OrderUpdateStatusMutationVariables = Exact<{
 
 
 export type OrderUpdateStatusMutation = { updateOrder?: { id: string, status?: string | null } | null };
+
+export type OrdersGetByEmailQueryVariables = Exact<{
+  email: Scalars['String']['input'];
+}>;
+
+
+export type OrdersGetByEmailQuery = { orders: Array<{ id: string, status?: string | null, total: number, orderItems: Array<{ quantity: number, size: string, color: string, product: { name: string, price: number } }> } | null> };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -501,6 +514,24 @@ export const OrderUpdateStatusDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<OrderUpdateStatusMutation, OrderUpdateStatusMutationVariables>;
+export const OrdersGetByEmailDocument = new TypedDocumentString(`
+    query OrdersGetByEmail($email: String!) {
+  orders(email: $email) {
+    id
+    status
+    total
+    orderItems {
+      quantity
+      size
+      color
+      product {
+        name
+        price
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<OrdersGetByEmailQuery, OrdersGetByEmailQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {

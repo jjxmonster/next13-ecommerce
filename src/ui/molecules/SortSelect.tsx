@@ -17,7 +17,7 @@ export const SortSelect = () => {
 			onChange={(e) => {
 				setSort(e.target.value);
 			}}
-			className="arrow-down-bg block w-48 cursor-pointer appearance-none rounded-md border-gray-300 px-2 py-1 text-sm font-light shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 lg:mt-1"
+			className="arrow-down-bg block w-48 cursor-pointer appearance-none rounded-md border border-gray-400 px-2 py-1 text-sm font-light shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 lg:mt-1"
 		>
 			<option selected>Choose a sort type</option>
 			<option value="weightedRating↓" data-testid="sort-by-rating">

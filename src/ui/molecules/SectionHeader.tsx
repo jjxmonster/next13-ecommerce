@@ -1,3 +1,4 @@
+import { ShirtIcon } from "lucide-react";
 import { type FunctionComponent } from "react";
 
 interface SectionHeaderProps {
@@ -9,13 +10,12 @@ export const SectionHeader: FunctionComponent<SectionHeaderProps> = ({
 	leftContent,
 }) => {
 	return (
-		<div className="bg-slate-200">
-			<div className="mx-auto flex max-w-7xl items-center justify-between px-8">
-				<h2 role="heading" className="py-8 font-medium text-gray-500">
-					{title}
-				</h2>
-				<div>{leftContent}</div>
+		<div className="flex justify-between py-5">
+			<div className="flex flex-col gap-2">
+				<ShirtIcon color="gray" />
+				<h1 className="text-md font-bold uppercase text-gray-600">{title}</h1>
 			</div>
+			{leftContent}
 		</div>
 	);
 };
