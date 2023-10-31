@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
 
@@ -22,5 +23,12 @@ export default async function CartSuccessPage({
 		searchParams.sessionId,
 	);
 
-	return <h2>{session.payment_status}</h2>;
+	return (
+		<div className="mt-10 flex flex-col items-center">
+			<Check color="green" size={40} strokeWidth={3} />
+			<h2 className="text-xl">
+				Payment Status: {session.payment_status.toUpperCase()}
+			</h2>
+		</div>
+	);
 }

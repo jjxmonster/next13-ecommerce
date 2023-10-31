@@ -102,7 +102,7 @@ export const handlePaymentAction = async () => {
 		})),
 		mode: "payment",
 		success_url: `${process.env.NEXT_PUBLIC_URL}/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
-		cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart/cancel?`,
+		cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart/cancel`,
 	});
 
 	if (!checkoutSession.url) {
