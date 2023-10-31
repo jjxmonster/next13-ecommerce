@@ -45,7 +45,12 @@ export const Rating = () => {
 							value={star}
 							className="sr-only"
 						/>
-						<StarIcon />
+						<StarIcon
+							color="gold"
+							fill={
+								star <= rating || star <= clickedStars ? "gold" : "transparent"
+							}
+						/>
 					</label>
 				))}
 			</div>

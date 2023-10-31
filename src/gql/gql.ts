@@ -34,6 +34,7 @@ const documents = {
     "query ProductsGetList($offset: Int, $field: String, $order: String) {\n  products(offset: $offset, sortByField: $field, sortOrder: $order) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetSimilar($id: ID!, $category: String!) {\n  products_similar(productId: $id, category: $category) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSimilarDocument,
     "mutation ReviewAddForProduct($productId: String!, $rating: Int!, $content: String!, $title: String!, $email: String!, $name: String!) {\n  createReview(\n    title: $title\n    productId: $productId\n    rating: $rating\n    content: $content\n    email: $email\n    name: $name\n  ) {\n    id\n  }\n}": types.ReviewAddForProductDocument,
+    "query ReviewsGetById($productId: ID!) {\n  reviews(productId: $productId) {\n    id\n    title\n    content\n    rating\n    name\n  }\n}": types.ReviewsGetByIdDocument,
 };
 
 /**
@@ -116,6 +117,10 @@ export function graphql(source: "query ProductsGetSimilar($id: ID!, $category: S
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation ReviewAddForProduct($productId: String!, $rating: Int!, $content: String!, $title: String!, $email: String!, $name: String!) {\n  createReview(\n    title: $title\n    productId: $productId\n    rating: $rating\n    content: $content\n    email: $email\n    name: $name\n  ) {\n    id\n  }\n}"): typeof import('./graphql').ReviewAddForProductDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ReviewsGetById($productId: ID!) {\n  reviews(productId: $productId) {\n    id\n    title\n    content\n    rating\n    name\n  }\n}"): typeof import('./graphql').ReviewsGetByIdDocument;
 
 
 export function graphql(source: string) {

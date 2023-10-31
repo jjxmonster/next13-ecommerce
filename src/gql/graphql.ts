@@ -131,7 +131,7 @@ export type Query = {
   collection_products?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
   order?: Maybe<Order>;
-  orders: Array<Order>;
+  orders: Array<Maybe<Order>>;
   product?: Maybe<Product>;
   products: Array<Product>;
   products_by_keyword: Array<Product>;
@@ -282,7 +282,7 @@ export type OrdersGetByEmailQueryVariables = Exact<{
 }>;
 
 
-export type OrdersGetByEmailQuery = { orders: Array<{ id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> }> };
+export type OrdersGetByEmailQuery = { orders: Array<{ id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null> };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -345,6 +345,13 @@ export type ReviewAddForProductMutationVariables = Exact<{
 
 
 export type ReviewAddForProductMutation = { createReview?: { id: string } | null };
+
+export type ReviewsGetByIdQueryVariables = Exact<{
+  productId: Scalars['ID']['input'];
+}>;
+
+
+export type ReviewsGetByIdQuery = { reviews: Array<{ id: string, title: string, content: string, rating: number, name: string }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -678,3 +685,14 @@ export const ReviewAddForProductDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ReviewAddForProductMutation, ReviewAddForProductMutationVariables>;
+export const ReviewsGetByIdDocument = new TypedDocumentString(`
+    query ReviewsGetById($productId: ID!) {
+  reviews(productId: $productId) {
+    id
+    title
+    content
+    rating
+    name
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewsGetByIdQuery, ReviewsGetByIdQueryVariables>;

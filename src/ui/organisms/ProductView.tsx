@@ -7,6 +7,7 @@ import { LoadingIndicator } from "../atoms/LoadingIndicator";
 import { SimilarProducts } from "../molecules/SimilarProducts";
 import { AddToCartButton } from "../atoms/AddToCartButton";
 import { ReviewForm } from "../molecules/ReviewForm";
+import { Reviews } from "./Reviews";
 import { type ProductPageFragment } from "@/gql/graphql";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
 
@@ -40,7 +41,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 
 	return (
 		<>
-			<article className="flex w-full flex-col gap-10 md:flex-row">
+			<article className="mt-10 flex w-full flex-col gap-10 md:flex-row">
 				<ProductCoverImage src={product.image} alt="" />
 				<div className="flex flex-col items-start gap-10">
 					<ProductCardDescription product={product} />
@@ -63,8 +64,9 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 					</Suspense>
 				</div>
 			</aside>
-			<section className="flex w-full">
+			<section className="mb-10  grid w-full grid-cols-2">
 				<ReviewForm productId={product.id} />
+				<Reviews productId={product.id} />
 			</section>
 		</>
 	);
