@@ -1,8 +1,5 @@
 "use client";
-import {
-	experimental_useOptimistic as useOptimistic,
-	useTransition,
-} from "react";
+import { useOptimistic, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { changeItemQuantity, removeItem } from "@/actions";
 

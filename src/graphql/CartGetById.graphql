@@ -1,4 +1,4 @@
-query CartByGetId($id: ID!) {
+query CartGetById($id: ID!) {
 	order(id: $id, status: "DRAFT") {
 		...Cart
 	}

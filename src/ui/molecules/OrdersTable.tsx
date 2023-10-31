@@ -1,14 +1,15 @@
+import { TableHeadCell } from "../atoms/TableHeadCell";
+import { formatCurrency } from "@/utils";
 import type { Order } from "@/gql/graphql";
 
 export const OrdersTable = ({ orders }: { orders: Order[] }) => {
 	return (
-		<table className="mt-10 w-full">
+		<table className="mt-10 w-full shadow-md">
 			<thead>
-				<tr className="grid grid-cols-3 px-3 py-5 shadow-md">
-					<th className="text-start text-sm uppercase text-gray-500">ID</th>
-					<th className="text-start text-sm uppercase text-gray-500">Status</th>
-					<th className="text-start text-sm uppercase text-gray-500">Total</th>
-					{/* <th>Date</th> */}
+				<tr className="grid grid-cols-3 border border-gray-200 px-3 py-5">
+					<TableHeadCell text="Order ID" />
+					<TableHeadCell text="Status" />
+					<TableHeadCell text="Total" />
 				</tr>
 			</thead>
 			<tbody>
@@ -17,8 +18,7 @@ export const OrdersTable = ({ orders }: { orders: Order[] }) => {
 						<tr className="grid grid-cols-3 px-3 py-5 shadow-md" key={order.id}>
 							<td>{order.id}</td>
 							<td>{order.status}</td>
-							<td>{order.total}</td>
-							{/* <td></td> */}
+							<td>{formatCurrency(order.total)}</td>
 						</tr>
 					);
 				})}

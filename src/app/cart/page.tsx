@@ -33,7 +33,7 @@ export default async function CartPage() {
 						<h2 className="text-xl font-medium">Order Summary</h2>
 						<p className="flex justify-between py-3">
 							<span>Order Total</span>
-							<span>{formatCurrency(40000)}</span>
+							<span>{formatCurrency(cart.total)}</span>
 						</p>
 						<CheckoutButton />
 					</div>

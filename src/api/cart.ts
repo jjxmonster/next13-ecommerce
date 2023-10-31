@@ -4,17 +4,17 @@ import { redirect } from "next/navigation";
 import { executeGraphql } from "./lib";
 import {
 	CartAddProductDocument,
-	CartByGetIdDocument,
 	CartCreateDocument,
 	OrderUpdateStatusDocument,
 	type CartFragment,
+	CartGetByIdDocument,
 } from "@/gql/graphql";
 
 export const getCartFromCookies = async () => {
 	const cartId = cookies().get("cartId")?.value;
 	if (cartId) {
 		const { order: cart } = await executeGraphql({
-			query: CartByGetIdDocument,
+			query: CartGetByIdDocument,
 			variables: {
 				id: cartId,
 			},
@@ -80,7 +80,7 @@ export const handlePaymentAction = async () => {
 		return;
 	}
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-		apiVersion: "2023-08-16",
+		apiVersion: "2023-10-16",
 		typescript: true,
 	});
 
