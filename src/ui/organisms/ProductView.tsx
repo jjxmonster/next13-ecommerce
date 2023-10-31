@@ -64,7 +64,7 @@ export const ProductView: FunctionComponent<ProductViewProps> = ({
 					</Suspense>
 				</div>
 			</aside>
-			<section className="mb-10  grid w-full grid-cols-2">
+			<section className="mb-10 grid w-full md:grid-cols-2">
 				<ReviewForm productId={product.id} />
 				<Reviews productId={product.id} />
 			</section>
