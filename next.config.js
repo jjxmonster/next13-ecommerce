@@ -4,7 +4,7 @@ const nextConfig = {
 		typedRoutes: true,
 	},
 	images: {
-		domains: ["loremflickr.com", "picsum.photos"],
+		domains: ["server916785.nazwa.pl"],
 	},
 	redirects: async () => {
 		return [

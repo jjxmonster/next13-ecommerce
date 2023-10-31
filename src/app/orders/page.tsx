@@ -16,7 +16,7 @@ export default async function OrdersPage() {
 		return <div>User does not have an email</div>;
 	}
 
-	const orders = await getOrdersByEmail("kuba.tarabasz@wp.pl");
+	const orders = await getOrdersByEmail(email);
 
 	if (!orders) {
 		return <div>No orders...</div>;
