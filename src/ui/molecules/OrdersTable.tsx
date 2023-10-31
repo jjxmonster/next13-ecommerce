@@ -1,8 +1,8 @@
 import { TableHeadCell } from "../atoms/TableHeadCell";
 import { formatCurrency } from "@/utils";
-import type { Order } from "@/gql/graphql";
+import type { CartFragment } from "@/gql/graphql";
 
-export const OrdersTable = ({ orders }: { orders: Order[] }) => {
+export const OrdersTable = ({ orders }: { orders: CartFragment[] }) => {
 	return (
 		<table className="mt-10 w-full shadow-md">
 			<thead>

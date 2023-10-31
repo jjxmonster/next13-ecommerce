@@ -131,7 +131,7 @@ export type Query = {
   collection_products?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
   order?: Maybe<Order>;
-  orders: Array<Maybe<Order>>;
+  orders: Array<Order>;
   product?: Maybe<Product>;
   products: Array<Product>;
   products_by_keyword: Array<Product>;
@@ -223,16 +223,16 @@ export type CartAddProductMutation = { createOrderItem?: { id: string } | null }
 export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null };
+export type CartCreateMutation = { createOrder?: { id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null };
+export type CartGetByIdQuery = { order?: { id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null };
 
-export type CartFragment = { id: string, total: number, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> };
+export type CartFragment = { id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> };
 
 export type CartRemoveProductMutationVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -282,7 +282,7 @@ export type OrdersGetByEmailQueryVariables = Exact<{
 }>;
 
 
-export type OrdersGetByEmailQuery = { orders: Array<{ id: string, status?: string | null, total: number, orderItems: Array<{ quantity: number, size: string, color: string, product: { name: string, price: number } }> } | null> };
+export type OrdersGetByEmailQuery = { orders: Array<{ id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -364,6 +364,7 @@ export const CartFragmentDoc = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  status
   orderItems {
     id
     quantity
@@ -437,6 +438,7 @@ export const CartCreateDocument = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  status
   orderItems {
     id
     quantity
@@ -460,6 +462,7 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  status
   orderItems {
     id
     quantity
@@ -520,21 +523,27 @@ export const OrderUpdateStatusDocument = new TypedDocumentString(`
 export const OrdersGetByEmailDocument = new TypedDocumentString(`
     query OrdersGetByEmail($email: String!) {
   orders(email: $email) {
-    id
-    status
-    total
-    orderItems {
-      quantity
-      size
-      color
-      product {
-        name
-        price
-      }
-    }
+    ...Cart
   }
 }
-    `) as unknown as TypedDocumentString<OrdersGetByEmailQuery, OrdersGetByEmailQueryVariables>;
+    fragment Cart on Order {
+  id
+  total
+  status
+  orderItems {
+    id
+    quantity
+    size
+    color
+    product {
+      image
+      id
+      name
+      description
+      price
+    }
+  }
+}`) as unknown as TypedDocumentString<OrdersGetByEmailQuery, OrdersGetByEmailQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {

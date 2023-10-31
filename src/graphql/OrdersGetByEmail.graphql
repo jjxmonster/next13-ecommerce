@@ -1,16 +1,5 @@
 query OrdersGetByEmail($email: String!) {
 	orders(email: $email) {
-		id
-		status
-		total
-		orderItems {
-			quantity
-			size
-			color
-			product {
-				name
-				price
-			}
-		}
+		...Cart
 	}
 }

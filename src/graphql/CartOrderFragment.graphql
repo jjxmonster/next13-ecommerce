@@ -1,6 +1,7 @@
 fragment Cart on Order {
 	id
 	total
+	status
 	orderItems {
 		id
 		quantity
