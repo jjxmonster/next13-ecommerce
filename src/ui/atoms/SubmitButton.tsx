@@ -1,5 +1,5 @@
 "use client";
-import { type FunctionComponent } from "react";
+import { useEffect, type FunctionComponent } from "react";
 import { useFormStatus } from "react-dom";
 
 interface SubmitButtonProps {
@@ -11,6 +11,13 @@ export const SubmitButton: FunctionComponent<SubmitButtonProps> = ({
 }) => {
 	const formStatus = useFormStatus();
 
+	useEffect(() => {
+		const form = document.getElementById("add-review-form") as HTMLFormElement;
+		if (formStatus.pending) {
+			return;
+		}
+		form?.reset();
+	}, [formStatus]);
 	return (
 		<button
 			disabled={formStatus.pending}

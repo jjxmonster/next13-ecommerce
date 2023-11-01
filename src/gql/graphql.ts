@@ -131,7 +131,7 @@ export type Query = {
   collection_products?: Maybe<Collection>;
   collections?: Maybe<Array<Maybe<Collection>>>;
   order?: Maybe<Order>;
-  orders: Array<Maybe<Order>>;
+  orders: Array<Order>;
   product?: Maybe<Product>;
   products: Array<Product>;
   products_by_keyword: Array<Product>;
@@ -282,7 +282,7 @@ export type OrdersGetByEmailQueryVariables = Exact<{
 }>;
 
 
-export type OrdersGetByEmailQuery = { orders: Array<{ id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> } | null> };
+export type OrdersGetByEmailQuery = { orders: Array<{ id: string, total: number, status?: string | null, orderItems: Array<{ id: string, quantity: number, size: string, color: string, product: { image: string, id: string, name: string, description: string, price: number } }> }> };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];

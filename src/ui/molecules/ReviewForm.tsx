@@ -8,7 +8,11 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 	return (
 		<div>
 			<h3 className="mb-5 text-2xl font-bold">Customer Reviews</h3>
-			<form action={addProductReview} data-testid="add-review-form">
+			<form
+				id="add-review-form"
+				action={addProductReview}
+				data-testid="add-review-form"
+			>
 				<input type="hidden" name="productId" value={productId} />
 				{reviewFormItems.map((item) => {
 					if (item.type === "rating") {
