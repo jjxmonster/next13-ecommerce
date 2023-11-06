@@ -6,7 +6,7 @@ interface ProductVariantLinkProps {
 	value: string;
 	slug: string;
 	selectedValue: string;
-	otherParams: { [key: string]: string };
+	otherParams: { [key: string]: string } | null;
 }
 
 export const ProductVariantLink: FunctionComponent<ProductVariantLinkProps> = ({

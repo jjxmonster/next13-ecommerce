@@ -1,6 +1,4 @@
-"use client";
-import { useEffect, type FunctionComponent } from "react";
-import { useRouter } from "next/navigation";
+import type { FunctionComponent } from "react";
 import { ProductVariantLink } from "../atoms/ProductVariantLink";
 
 interface ProductVariantsProps {
@@ -17,15 +15,6 @@ export const ProductVariants: FunctionComponent<ProductVariantsProps> = ({
 	variants,
 	searchParams,
 }) => {
-	const router = useRouter();
-	const selectedColor =
-		(searchParams.color as string) ?? variants.color[0]?.slug;
-	const selectedSize = (searchParams.size as string) ?? variants.size[0]?.slug;
-
-	useEffect(() => {
-		router.replace(`?color=${selectedColor}&size=${selectedSize}`);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 	return (
 		<div className="flex flex-col gap-5">
 			<section>
@@ -35,9 +24,13 @@ export const ProductVariants: FunctionComponent<ProductVariantsProps> = ({
 						return (
 							<ProductVariantLink
 								selectedValue={searchParams.color as string}
-								otherParams={{
-									size: searchParams.size as string,
-								}}
+								otherParams={
+									searchParams.size
+										? {
+												size: searchParams.size as string,
+										  }
+										: null
+								}
 								key={color?.slug}
 								type="color"
 								value={color?.name ?? ""}
@@ -55,9 +48,13 @@ export const ProductVariants: FunctionComponent<ProductVariantsProps> = ({
 						return (
 							<ProductVariantLink
 								selectedValue={searchParams.size as string}
-								otherParams={{
-									color: searchParams.color as string,
-								}}
+								otherParams={
+									searchParams.color
+										? {
+												color: searchParams.color as string,
+										  }
+										: null
+								}
 								key={size?.slug}
 								type="size"
 								value={size?.name ?? ""}
