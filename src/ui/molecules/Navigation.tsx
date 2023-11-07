@@ -1,7 +1,7 @@
+import { SignedIn } from "@clerk/nextjs";
 import * as React from "react";
 import { ActiveLink } from "../atoms/ActiveLink";
 import { navigationitems } from "@/utils";
-import { SignedIn } from "@clerk/nextjs";
 
 export const Navigation = () => {
 	const renderNavigationItem = navigationitems.map(({ href, name }) => {
