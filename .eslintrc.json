@@ -13,6 +13,8 @@
 		"next/core-web-vitals"
 	],
 	"rules": {
+		"@typescript-eslint/ban-ts-ignore": "off",
+
 		// sort imports
 		"import/order": "error",
 

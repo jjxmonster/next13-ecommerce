@@ -80,7 +80,9 @@ export const handlePaymentAction = async () => {
 		return;
 	}
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-		apiVersion: "2023-10-16",
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		apiVersion: "2023-08-16",
 		typescript: true,
 	});
 
