@@ -13,5 +13,6 @@ export default authMiddleware({
 		"/collections/(.*)",
 		"/product/(.*)",
 		"/products/(.*)",
+		"/api/webhook/stripe",
 	],
 });
