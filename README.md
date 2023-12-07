@@ -10,6 +10,16 @@ E-Commerce App where users can create accounts, add products to their cart, plac
 
 Check out the live demo of the application: [Live Demo](https://next13-ecommerce-five.vercel.app/)
 
+## Screenshots
+
+### Homepage![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom1.png&w=1080&q=75)
+
+### Products![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom2.png&w=1080&q=75)
+
+### Single product![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom3.png&w=1080&q=75)
+
+### Shopping Cart![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom3.png&w=1080&q=75)
+
 ## Environment Variables (`.env.local`)
 
 Before running the application, make sure you have correctly configured the environment variables. Fill in the following variables in the `.env` file:
