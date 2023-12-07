@@ -1,10 +1,20 @@
 # Next.js E-Commerce App
 
-A project of an e-commerce application built with Next.js, GraphQL, Stripe, Atomic Design, Tailwind CSS, GraphQL Codegen, and Clerk.
+A project of an e-commerce application built with Next.js
 
 ## Brief Description
 
 E-Commerce App where users can create accounts, add products to their cart, place orders, and make payments using Stripe. Users also have access to their order history and add product review. Additionaly user can sort products based on price, name or rating
+
+## Tech Stack
+
+- Next.js
+- GraphQL
+- Stripe
+- Atomic Design
+- Tailwind CSS
+- GraphQL Codegen
+- Clerk
 
 ## Live Demo
 
@@ -18,7 +28,7 @@ Check out the live demo of the application: [Live Demo](https://next13-ecommerce
 
 ### Single product![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom3.png&w=1080&q=75)
 
-### Shopping Cart![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom3.png&w=1080&q=75)
+### Shopping Cart![homepage](https://www.tarabasz.dev/_next/image?url=/img/ecom4.png&w=1080&q=75)
 
 ## Environment Variables (`.env.local`)
 
