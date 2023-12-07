@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js E-Commerce App
 
-## Getting Started
+A project of an e-commerce application built with Next.js, GraphQL, Stripe, Atomic Design, Tailwind CSS, GraphQL Codegen, and Clerk.
 
-First, run the development server:
+## Brief Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+E-Commerce App where users can create accounts, add products to their cart, place orders, and make payments using Stripe. Users also have access to their order history and add product review. Additionaly user can sort products based on price, name or rating
+
+## Live Demo
+
+Check out the live demo of the application: [Live Demo](https://next13-ecommerce-five.vercel.app/)
+
+## Environment Variables (`.env.local`)
+
+Before running the application, make sure you have correctly configured the environment variables. Fill in the following variables in the `.env` file:
+
+```env
+
+GRAPHQL_URL= // GraphQL server URL
+
+STRIPE_SECRET_KEY= // Stripe  private  key  for  integration
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= // Clerk  public  key  for  integration
+
+CLERK_SECRET_KEY= // Clerk  private  key  for  integration
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in // Clerk  login  path
+
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up // Clerk  registration  path
+
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL= // Redirect  URL  after  Clerk  sign-in
+
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL= // Redirect  URL  after  Clerk  sign-up
+
+NEXT_PUBLIC_URL= // Public  URL  of  the  application
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation and running the app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+pnpm i
+pnpm dev
+```
