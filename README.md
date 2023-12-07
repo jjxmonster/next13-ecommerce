@@ -62,3 +62,5 @@ NEXT_PUBLIC_URL= // Public  URL  of  the  application
 pnpm i
 pnpm dev
 ```
+
+## [GraphQL Server](https://github.com/jjxmonster/graphql-server-ecommerce)
